@@ -1,0 +1,26 @@
+{
+  "name": "connect-lite",
+  "version": "1.0.0",
+  "description": "This is a web application that can store basic skill information about users.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RyanShendler/Connect-Lite.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RyanShendler/Connect-Lite/issues"
+  },
+  "homepage": "https://github.com/RyanShendler/Connect-Lite#readme",
+  "dependencies": {
+    "@neo4j/graphql": "^3.8.0",
+    "apollo-server": "^3.10.2",
+    "graphql": "^16.6.0",
+    "neo4j-driver": "^5.0.1"
+  }
+}
