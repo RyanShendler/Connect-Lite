@@ -2,6 +2,7 @@ const { Neo4jGraphQL } = require("@neo4j/graphql");
 const { ApolloServer, gql } = require("apollo-server");
 const neo4j = require("neo4j-driver");
 
+//prettier-ignore
 const typeDefs = gql`
   type User {
     name: String!
@@ -27,14 +28,14 @@ const driver = neo4j.driver(
 );
 
 //config selects "connect-lite" DB instead of the default "neo4j" DB
-const neoSchema = new Neo4jGraphQL({ 
-    typeDefs, 
-    driver,
-    config: {
-        driverConfig: {
-            database: "connect-lite"
-        }
-    }
+const neoSchema = new Neo4jGraphQL({
+  typeDefs,
+  driver,
+  config: {
+    driverConfig: {
+      database: "connect-lite",
+    },
+  },
 });
 
 neoSchema.getSchema().then((schema) => {
