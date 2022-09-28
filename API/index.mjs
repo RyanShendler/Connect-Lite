@@ -1,23 +1,37 @@
-const { Neo4jGraphQL } = require("@neo4j/graphql");
-const { ApolloServer, gql } = require("apollo-server");
-const neo4j = require("neo4j-driver");
+import { Neo4jGraphQL } from "@neo4j/graphql";
+import { ApolloServer, gql } from "apollo-server";
+import neo4j from "neo4j-driver";
 
 //prettier-ignore
 const typeDefs = gql`
   type User {
+    userID: String! @unique
     name: String!
     knownSkills: [Skill!]!
       @relationship(type: "HAS_SKILL", properties: "SkillRating", direction: OUT)
   }
 
   type Skill {
-    name: String!
+    name: String! @unique
+    description: String!
+    imageURL: String
     skillUsers: [User!]!
       @relationship(type: "HAS_SKILL", properties: "SkillRating", direction: IN)
   }
 
   interface SkillRating {
     rating: Int!
+  }
+
+  type Mutation {
+    mergeUser(userID: String!, name: String!): User
+    @cypher(
+      statement: """
+      MERGE (u:User {userID:$userID})
+      ON CREATE SET u.name = $name
+      RETURN u
+      """
+    )
   }
 `;
 
@@ -37,6 +51,11 @@ const neoSchema = new Neo4jGraphQL({
     },
   },
 });
+
+await neoSchema.getSchema();
+
+//checks if unique constraints exist and creates them if necessary
+await neoSchema.assertIndexesAndConstraints({ options: { create: true } });
 
 neoSchema.getSchema().then((schema) => {
   const server = new ApolloServer({ schema });
