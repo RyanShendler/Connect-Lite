@@ -20,7 +20,7 @@ const Home = () => {
           <h1 className="font-serif text-5xl">Hello {user.name}</h1>
         </div>
       </div>
-      <UserSkills user_id={user.ID} />
+      <UserSkills admin={user.admin} user_id={user.ID} />
     </div>
   );
 };

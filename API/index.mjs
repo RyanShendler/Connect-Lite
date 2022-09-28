@@ -14,7 +14,6 @@ const typeDefs = gql`
   type Skill {
     name: String! @unique
     description: String!
-    imageURL: String
     skillUsers: [User!]!
       @relationship(type: "HAS_SKILL", properties: "SkillRating", direction: IN)
   }

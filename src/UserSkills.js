@@ -3,7 +3,7 @@ import { gql, useQuery } from "@apollo/client";
 import UserSkillRow from "./UserSkillRow";
 import { GET_SKILLS } from "../queries/GET_SKILLS";
 
-const UserSkills = ({ user_id }) => {
+const UserSkills = ({ user_id, admin }) => {
   const { loading, error, data } = useQuery(GET_SKILLS, {
     variables: {
       where: {
@@ -29,14 +29,16 @@ const UserSkills = ({ user_id }) => {
               Add Skill
             </button>
           </div>
-          <div className="self-center">
-            <Link
-              className="border-2 text-white border-white shadow-sm rounded-md p-2"
-              to="/admin"
-            >
-              Link to admin skill listing
-            </Link>
-          </div>
+          {admin && (
+            <div className="self-center">
+              <Link
+                className="border-2 text-white border-white shadow-sm rounded-md p-2"
+                to="/admin"
+              >
+                Link to admin skill listing
+              </Link>
+            </div>
+          )}
         </div>
       </div>
       <div className="p-2">

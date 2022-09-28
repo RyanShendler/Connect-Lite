@@ -13,6 +13,8 @@ render(
     domain="dev-0aljb7b7.us.auth0.com"
     clientId="rYMsifGn4lzx7z6afs9TcLxCrhWzQOuK"
     redirectUri={window.location.origin}
+    audience="https://dev-0aljb7b7.us.auth0.com/api/v2/"
+    scope="read:current_user"
   >
     <ApolloProvider client={client}>
       <App />
