@@ -12,7 +12,8 @@ const typeDefs = gql`
   }
 
   type Skill {
-    name: String! @unique
+    skillID: ID! @id
+    name: String!
     description: String!
     skillUsers: [User!]!
       @relationship(type: "HAS_SKILL", properties: "SkillRating", direction: IN)
@@ -27,8 +28,18 @@ const typeDefs = gql`
     @cypher(
       statement: """
       MERGE (u:User {userID:$userID})
-      ON CREATE SET u.name = $name
+      ON CREATE SET u.name = $name, u.userID=$userID
+      ON MATCH SET u.name = $name
       RETURN u
+      """
+    )
+    mergeSkill(name: String!, description: String!): Skill
+    @cypher(
+      statement: """
+      MERGE (s:Skill {name:$name})
+      ON CREATE SET s.description=$description, s.name=$name
+      ON MATCH SET s.description=$description, s.name=$name
+      RETURN s
       """
     )
   }

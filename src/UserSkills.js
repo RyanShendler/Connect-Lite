@@ -1,16 +1,35 @@
 import { Link } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
 import UserSkillRow from "./UserSkillRow";
-import { GET_SKILLS } from "../queries/GET_SKILLS";
+import { GET_RATED } from "../queries/GET_RATED";
+import { useState } from "react";
+import { GET_UNRATED } from "../queries/GET_UNRATED";
+import { CREATE_RATING } from "../mutations/CREATE_RATING";
 
 const UserSkills = ({ user_id, admin }) => {
-  const { loading, error, data } = useQuery(GET_SKILLS, {
+  const [newSkill, setNewSkill] = useState(""); //saves the ID of the skill to be rated (reset to "" once after submission/query)
+  const { loading, error, data } = useQuery(GET_RATED, {
     variables: {
       where: {
         userID: user_id,
       },
     },
   });
+  const { loading: unratedLoading, data: unratedSkills } = useQuery(
+    GET_UNRATED,
+    {
+      variables: {
+        where: {
+          skillUsers_NONE: {
+            userID: user_id,
+          },
+        },
+      },
+    }
+  );
+  /*const [createRating] = useMutation(CREATE_RATING, {
+    refetchQueries: ["GET_RATED", "GET_UNRATED"]
+  }) */
 
   if (loading) {
     return <div>Loading</div>;
@@ -24,11 +43,37 @@ const UserSkills = ({ user_id, admin }) => {
       <div className="flex flex-row justify-between py-2 bg-sky-600">
         <h1 className="text-white text-xl px-4 py-2">Skills</h1>
         <div className="flex flex-row justify-end px-8 space-x-6">
-          <div className="self-center">
-            <button className="border-2 text-white border-white shadow-sm rounded-md p-2">
-              Add Skill
-            </button>
-          </div>
+          <form
+            className="flex flex-row justify-around"
+            onSubmit={() => {
+              if (newSkill !== "") {
+                /*createRating({
+                  variables: {
+
+                  }
+                });*/
+                setNewSkill("");
+              }
+            }}
+          >
+            {unratedLoading ? (
+              <div>Loading...</div>
+            ) : (
+              <select
+                value={newSkill}
+                onChange={(e) => setNewSkill(e.target.value)}
+                onBlur={(e) => setNewSkill(e.target.value)}
+              >
+                <option value="">Choose a skill to add</option>
+                {unratedSkills.skills.map((skill) => (
+                  <option key={skill.skillID} value={skill.skillID}>
+                    {skill.name}
+                  </option>
+                ))}
+              </select>
+            )}
+            <input type="submit" value="Add Skill" />
+          </form>
           {admin && (
             <div className="self-center">
               <Link
@@ -46,9 +91,6 @@ const UserSkills = ({ user_id, admin }) => {
           <tbody>
             <tr>
               <th className="border border-black border-collapse p-2 text-center">
-                Image
-              </th>
-              <th className="border border-black border-collapse p-2 text-center">
                 Name
               </th>
               <th className="border border-black border-collapse p-2 text-center">
@@ -62,12 +104,15 @@ const UserSkills = ({ user_id, admin }) => {
             {!data.users[0].knownSkills.length ? (
               <UserSkillRow />
             ) : (
-              data.users[0].knownSkills.map((skill, index) => {
+              data.users[0].knownSkills.map((skill) => {
                 return (
                   <UserSkillRow
-                    key={index}
+                    key={skill.skillID}
+                    ID={skill.skillID}
                     name={skill.name}
-                    rating={String(skill.skillUsersConnection.edges[0].rating)}
+                    description={skill.description}
+                    rating={skill.skillUsersConnection.edges[0].rating}
+                    empty={false}
                   />
                 );
               })
