@@ -32,31 +32,31 @@ const SkillListing = () => {
 
   return (
     <div className="px-4 py-6">
-      <div className="flex flex-col bg-gray-50 rounded-md shadow-lg overflow-hidden">
-        <div className="flex flex-row justify-between p-2 bg-sky-600">
+      <div className="flex flex-col overflow-hidden rounded-md bg-gray-50 shadow-lg">
+        <div className="flex flex-row justify-between bg-sky-600 p-2">
           <div className="self-center px-4">
-            <h1 className="text-white text-xl">All Skills</h1>
+            <h1 className="text-xl text-white">All Skills</h1>
           </div>
           <div className="px-4 py-2">
             <button
               onClick={createModal}
-              className="border-2 border-white text-white rounded-md shadow-sm p-2"
+              className="rounded-md border-2 border-white p-2 text-white shadow-sm"
             >
               Create Skill
             </button>
           </div>
         </div>
         <div className="p-2">
-          <table className="border table-auto border-collapse border-black w-full">
+          <table className="w-full table-auto border-collapse border border-black">
             <tbody>
               <tr>
-                <th className="border border-black border-collapse p-2 text-center">
+                <th className="border-collapse border border-black p-2 text-center">
                   Name
                 </th>
-                <th className="border border-black border-collapse p-2 text-center">
+                <th className="border-collapse border border-black p-2 text-center">
                   Description
                 </th>
-                <th className="border border-black border-collapse p-2 text-center"></th>
+                <th className="border-collapse border border-black p-2 text-center"></th>
               </tr>
               {!data.skills.length ? (
                 <SkillListingRow />
@@ -79,8 +79,8 @@ const SkillListing = () => {
       </div>
       {showModal ? (
         <Modal>
-          <div className="fixed flex flex-col items-center p-2 bg-gray-100 rounded-md shadow-lg overflow-hidden">
-            <h2 className="text-black text-xl px-2">New Skill</h2>
+          <div className="fixed flex flex-col items-center overflow-hidden rounded-md bg-gray-100 p-2 shadow-lg">
+            <h2 className="px-2 text-xl text-black">New Skill</h2>
             <div className="p-2">
               <form
                 id="skillForm"
@@ -109,7 +109,7 @@ const SkillListing = () => {
                     placeholder="Name"
                     value={skillName}
                     onChange={(e) => setSkillName(e.target.value)}
-                    className="shadow-md px-1"
+                    className="px-1 shadow-md"
                   />
                 </label>
                 <label htmlFor="description" className="pt-1 pb-2">
@@ -121,20 +121,20 @@ const SkillListing = () => {
                     placeholder="Description"
                     value={skillDescription}
                     onChange={(e) => setSkillDescription(e.target.value)}
-                    className="shadow-md px-1"
+                    className="px-1 shadow-md"
                   />
                 </label>
               </form>
-              <div className="pt-2 flex flex-row justify-around">
+              <div className="flex flex-row justify-around pt-2">
                 <button
                   type="submit"
                   form="skillForm"
-                  className="bg-green-700 text-white rounded-md shadow-sm p-1"
+                  className="rounded-md bg-green-700 p-1 text-white shadow-sm"
                 >
                   Submit
                 </button>
                 <button
-                  className="bg-red-700 text-white rounded-md shadow-sm p-1"
+                  className="rounded-md bg-red-700 p-1 text-white shadow-sm"
                   onClick={destroyModal}
                 >
                   Cancel

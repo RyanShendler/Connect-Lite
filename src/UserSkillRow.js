@@ -52,16 +52,16 @@ const UserSkillRow = ({
 
   return (
     <tr>
-      <td className="border border-black border-collapse p-2 text-center">
+      <td className="border-collapse border border-black p-2 text-center">
         {name}
       </td>
-      <td className="border border-black border-collapse p-2 text-center">
+      <td className="border-collapse border border-black p-2 text-center">
         {description}
       </td>
-      <td className="border border-black border-collapse p-2 text-center">
+      <td className="border-collapse border border-black p-2 text-center">
         {!empty && (
           <div className="flex flex-row justify-around">
-            <div className="flex flex-row items-center content-center space-x-1">
+            <div className="flex flex-row content-center items-center space-x-1">
               <label htmlFor={`knowledgeable-${ID}`}>Knowledgeable</label>
               <input
                 id={`knowledgeable-${ID}`}
@@ -73,7 +73,7 @@ const UserSkillRow = ({
                 }}
               />
             </div>
-            <div className="flex flex-row items-center content-center space-x-1">
+            <div className="flex flex-row content-center items-center space-x-1">
               <label htmlFor={`proficient-${ID}`}>Proficient</label>
               <input
                 id={`proficient-${ID}`}
@@ -85,7 +85,7 @@ const UserSkillRow = ({
                 }}
               />
             </div>
-            <div className="flex flex-row items-center content-center space-x-1">
+            <div className="flex flex-row content-center items-center space-x-1">
               <label htmlFor={`lead/teach-${ID}`}>Lead/Teach</label>
               <input
                 id={`lead/teach-${ID}`}
@@ -100,10 +100,10 @@ const UserSkillRow = ({
           </div>
         )}
       </td>
-      <td className="border border-black border-collapse p-2 text-center">
+      <td className="border-collapse border border-black p-2 text-center">
         {!empty && (
           <button
-            className="text-white bg-red-600 rounded-md shadow-sm p-1"
+            className="rounded-md bg-red-600 p-1 text-white shadow-sm"
             onClick={() => {
               deleteRating({
                 variables: {

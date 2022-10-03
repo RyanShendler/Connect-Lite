@@ -21,18 +21,18 @@ const SkillListingRow = ({ name = "", description = "", edit = false, ID }) => {
   if (!editing) {
     return (
       <tr>
-        <td className="border border-black border-collapse p-2 text-center">
+        <td className="border-collapse border border-black p-2 text-center">
           {skillName}
         </td>
-        <td className="border border-black border-collapse p-2 text-center">
+        <td className="border-collapse border border-black p-2 text-center">
           {skillDescription}
         </td>
-        <td className="border border-black border-collapse p-2 text-center">
+        <td className="border-collapse border border-black p-2 text-center">
           {edit && (
             <div className="flex flex-col items-center justify-around space-y-2">
               <button
                 onClick={() => setEditing(true)}
-                className="text-white bg-green-700 rounded-md shadow-sm p-1"
+                className="rounded-md bg-green-700 p-1 text-white shadow-sm"
               >
                 Edit
               </button>
@@ -46,7 +46,7 @@ const SkillListingRow = ({ name = "", description = "", edit = false, ID }) => {
                     },
                   });
                 }}
-                className="text-white bg-red-600 rounded-md shadow-sm p-1"
+                className="rounded-md bg-red-600 p-1 text-white shadow-sm"
               >
                 Delete
               </button>
@@ -58,23 +58,23 @@ const SkillListingRow = ({ name = "", description = "", edit = false, ID }) => {
   } else {
     return (
       <tr>
-        <td className="border border-black border-collapse p-2 text-center">
+        <td className="border-collapse border border-black p-2 text-center">
           <input
             id="editName"
             value={skillName}
             onChange={(e) => setSkillName(e.target.value)}
-            className="shadow-md px-1"
+            className="px-1 shadow-md"
           />
         </td>
-        <td className="border border-black border-collapse p-2 text-center">
+        <td className="border-collapse border border-black p-2 text-center">
           <input
             id="editDescription"
             value={skillDescription}
             onChange={(e) => setSkillDescription(e.target.value)}
-            className="shadow-md px-1"
+            className="px-1 shadow-md"
           />
         </td>
-        <td className="border border-black border-collapse p-2 text-center">
+        <td className="border-collapse border border-black p-2 text-center">
           {edit && (
             <div className="flex flex-col items-center justify-around space-y-2">
               <button
@@ -92,7 +92,7 @@ const SkillListingRow = ({ name = "", description = "", edit = false, ID }) => {
                   });
                   setEditing(false);
                 }}
-                className="text-white bg-green-700 rounded-md shadow-sm p-1"
+                className="rounded-md bg-green-700 p-1 text-white shadow-sm"
               >
                 Save Changes
               </button>
@@ -102,7 +102,7 @@ const SkillListingRow = ({ name = "", description = "", edit = false, ID }) => {
                   setSkillDescription(description);
                   setEditing(false);
                 }}
-                className="text-white bg-red-600 rounded-md shadow-sm p-1"
+                className="rounded-md bg-red-600 p-1 text-white shadow-sm"
               >
                 Cancel
               </button>

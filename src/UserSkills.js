@@ -40,10 +40,10 @@ const UserSkills = ({ user_id, admin }) => {
   }
 
   return (
-    <div className="flex flex-col mt-4 bg-gray-50 rounded-md shadow-lg overflow-hidden">
-      <div className="flex flex-row justify-between py-2 bg-sky-600">
-        <h1 className="text-white text-xl px-4 py-2">Skills</h1>
-        <div className="flex flex-row justify-end px-8 space-x-6">
+    <div className="mt-4 flex flex-col overflow-hidden rounded-md bg-gray-50 shadow-lg">
+      <div className="flex flex-row justify-between bg-sky-600 py-2">
+        <h1 className="px-4 py-2 text-xl text-white">Skills</h1>
+        <div className="flex flex-row justify-end space-x-6 px-8">
           <form
             className="flex items-center"
             onSubmit={() => {
@@ -95,7 +95,7 @@ const UserSkills = ({ user_id, admin }) => {
                 <input
                   type="submit"
                   value="Add Skill"
-                  className="border-2 text-white border-white shadow-sm rounded-md p-1"
+                  className="rounded-md border-2 border-white p-1 text-white shadow-sm"
                 />
               </div>
             </div>
@@ -103,7 +103,7 @@ const UserSkills = ({ user_id, admin }) => {
           {admin && (
             <div className="self-center">
               <Link
-                className="border-2 text-white border-white shadow-sm rounded-md p-1"
+                className="rounded-md border-2 border-white p-1 text-white shadow-sm"
                 to="/admin"
               >
                 Skill Listing
@@ -113,19 +113,19 @@ const UserSkills = ({ user_id, admin }) => {
         </div>
       </div>
       <div className="p-2">
-        <table className="border table-auto border-black border-collapse w-full">
+        <table className="w-full table-auto border-collapse border border-black">
           <tbody>
             <tr>
-              <th className="border border-black border-collapse p-2 text-center">
+              <th className="border-collapse border border-black p-2 text-center">
                 Name
               </th>
-              <th className="border border-black border-collapse p-2 text-center">
+              <th className="border-collapse border border-black p-2 text-center">
                 Description
               </th>
-              <th className="border border-black border-collapse p-2 text-center">
+              <th className="border-collapse border border-black p-2 text-center">
                 Rating
               </th>
-              <th className="border border-black border-collapse p-2 text-center"></th>
+              <th className="border-collapse border border-black p-2 text-center"></th>
             </tr>
             {!data.users[0].knownSkills.length ? (
               <UserSkillRow />

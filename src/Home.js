@@ -9,10 +9,10 @@ const Home = () => {
   //add margin to top of box to account for header
   return (
     <div className="px-4 py-6">
-      <div className="flex flex-row content-center bg-gray-50 rounded-md shadow-lg px-6 py-8">
+      <div className="flex flex-row content-center rounded-md bg-gray-50 px-6 py-8 shadow-lg">
         <div className="px-2">
           <img
-            className="border-2 border-white rounded-full max-w-full h-auto"
+            className="h-auto max-w-full rounded-full border-2 border-white"
             src={user.picture}
           />
         </div>

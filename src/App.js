@@ -20,7 +20,7 @@ const App = () => {
     //this is the main app
     return (
       <StrictMode>
-        <div className="flex flex-col bg-gray-200 w-screen h-screen">
+        <div className="flex h-screen w-screen flex-col bg-gray-200">
           <BrowserRouter>
             <Header />
             <div className="mt-12">
@@ -37,7 +37,7 @@ const App = () => {
     //this is the login screen
     return (
       <StrictMode>
-        <div className="bg-gray-200 w-screen h-screen">
+        <div className="h-screen w-screen bg-gray-200">
           <Login />
         </div>
       </StrictMode>

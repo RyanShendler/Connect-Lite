@@ -4,18 +4,18 @@ const Login = () => {
   const { loginWithRedirect } = useAuth0();
   return (
     <div
-      className="flex flex-col absolute z-100 text-center top-1/2 left-1/2 border border-black rounded-md bg-gray-50 shadow-md w-1/3 h-1/4 align-center overflow-hidden"
+      className="z-100 align-center absolute top-1/2 left-1/2 flex h-1/4 w-1/3 flex-col overflow-hidden rounded-md border border-black bg-gray-50 text-center shadow-md"
       style={{ transform: "translate(-50%, -50%)" }}
     >
       <div className="bg-sky-600 p-6"></div>
-      <div className="self-center mt-14 mb-5 shrink">
-        <h1 className="text-black font-serif text-3xl">
+      <div className="mt-14 mb-5 shrink self-center">
+        <h1 className="font-serif text-3xl text-black">
           Login To Connect-Lite
         </h1>
       </div>
       <div>
         <button
-          className="text-l py-2 px-6 border border-black rounded-lg shadow-md"
+          className="text-l rounded-lg border border-black py-2 px-6 shadow-md"
           onClick={loginWithRedirect}
         >
           Login
