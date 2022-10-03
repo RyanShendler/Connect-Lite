@@ -4,6 +4,7 @@ import { GET_LISTING } from "../queries/GET_LISTING";
 import { useState } from "react";
 import Modal from "./Modal";
 import { CREATE_SKILL } from "../mutations/CREATE_SKILL";
+import TableHeader from "./TableHeader";
 
 const SkillListing = () => {
   const { loading, error, data } = useQuery(GET_LISTING);
@@ -38,10 +39,7 @@ const SkillListing = () => {
             <h1 className="text-xl text-white">All Skills</h1>
           </div>
           <div className="px-4 py-2">
-            <button
-              onClick={createModal}
-              className="rounded-md border-2 border-white p-2 text-white shadow-sm"
-            >
+            <button onClick={createModal} className="btn-header">
               Create Skill
             </button>
           </div>
@@ -50,13 +48,9 @@ const SkillListing = () => {
           <table className="w-full table-auto border-collapse border border-black">
             <tbody>
               <tr>
-                <th className="border-collapse border border-black p-2 text-center">
-                  Name
-                </th>
-                <th className="border-collapse border border-black p-2 text-center">
-                  Description
-                </th>
-                <th className="border-collapse border border-black p-2 text-center"></th>
+                <TableHeader name="Name" />
+                <TableHeader name="Description" />
+                <TableHeader />
               </tr>
               {!data.skills.length ? (
                 <SkillListingRow />
@@ -126,17 +120,10 @@ const SkillListing = () => {
                 </label>
               </form>
               <div className="flex flex-row justify-around pt-2">
-                <button
-                  type="submit"
-                  form="skillForm"
-                  className="rounded-md bg-green-700 p-1 text-white shadow-sm"
-                >
+                <button type="submit" form="skillForm" className="btn-green">
                   Submit
                 </button>
-                <button
-                  className="rounded-md bg-red-700 p-1 text-white shadow-sm"
-                  onClick={destroyModal}
-                >
+                <button className="btn-red" onClick={destroyModal}>
                   Cancel
                 </button>
               </div>

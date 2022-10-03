@@ -1,11 +1,17 @@
 const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const CopyWebPackPlugin = require("copy-webpack-plugin");
 
 //tells webpack to use template ./src/index.html to build an output HTML
 //file with bundle.js as a script at ./dist/index.html
 const htmlPlugin = new HtmlWebPackPlugin({
   template: "./src/index.html",
   filename: "./index.html",
+});
+
+//copies files from "./assets" to "./dist/assets"
+const copyPlugin = new CopyWebPackPlugin({
+  patterns: [{ from: "assets", to: "assets" }],
 });
 
 module.exports = {
@@ -37,5 +43,5 @@ module.exports = {
       },
     ],
   },
-  plugins: [htmlPlugin],
+  plugins: [htmlPlugin, copyPlugin],
 };

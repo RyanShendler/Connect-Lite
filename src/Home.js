@@ -1,10 +1,12 @@
 //import { useAuth0 } from "@auth0/auth0-react";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useState } from "react";
 import UserSkills from "./UserSkills";
 import useUser from "./useUser";
 
 const Home = () => {
   const user = useUser();
+  //prevents infinite error loop if backup image URL not found
+  const [imageLoadError, setImageLoadError] = useState(false);
 
   //add margin to top of box to account for header
   return (
@@ -14,6 +16,12 @@ const Home = () => {
           <img
             className="h-auto max-w-full rounded-full border-2 border-white"
             src={user.picture}
+            onError={(e) => {
+              if (!imageLoadError) {
+                setImageLoadError(true);
+                e.target.src = "assets/placeholder.png";
+              }
+            }}
           />
         </div>
         <div className="self-center px-4">

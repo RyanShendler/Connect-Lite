@@ -2,6 +2,8 @@ import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import { DELETE_RATING } from "../mutations/DELETE_RATING";
 import { EDIT_RATING } from "../mutations/EDIT_RATING";
+import RatingButton from "./RatingButton";
+import TableEntry from "./TableEntry";
 
 //a table row representing a row of user skill data
 
@@ -52,58 +54,44 @@ const UserSkillRow = ({
 
   return (
     <tr>
-      <td className="border-collapse border border-black p-2 text-center">
-        {name}
-      </td>
-      <td className="border-collapse border border-black p-2 text-center">
-        {description}
-      </td>
-      <td className="border-collapse border border-black p-2 text-center">
+      <TableEntry>{name}</TableEntry>
+      <TableEntry>{description}</TableEntry>
+      <TableEntry>
         {!empty && (
           <div className="flex flex-row justify-around">
-            <div className="flex flex-row content-center items-center space-x-1">
-              <label htmlFor={`knowledgeable-${ID}`}>Knowledgeable</label>
-              <input
-                id={`knowledgeable-${ID}`}
-                type="radio"
-                name={`rating${ID}`}
-                checked={userRating === "1"}
-                onChange={() => {
-                  updateRating("1");
-                }}
-              />
-            </div>
-            <div className="flex flex-row content-center items-center space-x-1">
-              <label htmlFor={`proficient-${ID}`}>Proficient</label>
-              <input
-                id={`proficient-${ID}`}
-                type="radio"
-                name={`rating${ID}`}
-                checked={userRating === "2"}
-                onChange={() => {
-                  updateRating("2");
-                }}
-              />
-            </div>
-            <div className="flex flex-row content-center items-center space-x-1">
-              <label htmlFor={`lead/teach-${ID}`}>Lead/Teach</label>
-              <input
-                id={`lead/teach-${ID}`}
-                type="radio"
-                name={`rating${ID}`}
-                checked={userRating === "3"}
-                onChange={() => {
-                  updateRating("3");
-                }}
-              />
-            </div>
+            <RatingButton
+              label={"Knowledgeable"}
+              buttonID={`knowledgeable-${ID}`}
+              buttonGroup={`rating${ID}`}
+              checked={userRating === "1"}
+              onChange={() => {
+                updateRating("1");
+              }}
+            />
+            <RatingButton
+              label={"Proficient"}
+              buttonID={`proficient-${ID}`}
+              buttonGroup={`rating${ID}`}
+              checked={userRating === "2"}
+              onChange={() => {
+                updateRating("2");
+              }}
+            />
+            <RatingButton
+              label={"Lead/Teach"}
+              buttonID={`lead/teach-${ID}`}
+              buttonGroup={`rating${ID}`}
+              checked={userRating === "3"}
+              onChange={() => {
+                updateRating("3");
+              }}
+            />
           </div>
         )}
-      </td>
-      <td className="border-collapse border border-black p-2 text-center">
+      </TableEntry>
+      <TableEntry>
         {!empty && (
           <button
-            className="rounded-md bg-red-600 p-1 text-white shadow-sm"
             onClick={() => {
               deleteRating({
                 variables: {
@@ -124,11 +112,12 @@ const UserSkillRow = ({
                 },
               });
             }}
+            className="btn-red"
           >
             Remove
           </button>
         )}
-      </td>
+      </TableEntry>
     </tr>
   );
 };

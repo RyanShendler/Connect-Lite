@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
-import { gql, useMutation, useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import UserSkillRow from "./UserSkillRow";
 import { GET_RATED } from "../queries/GET_RATED";
 import { useState } from "react";
 import { GET_UNRATED } from "../queries/GET_UNRATED";
 import { CREATE_RATING } from "../mutations/CREATE_RATING";
+import TableHeader from "./TableHeader";
 
 const UserSkills = ({ user_id, admin }) => {
   const [newSkill, setNewSkill] = useState(""); //saves the ID of the skill to be rated (reset to "" after submission/query)
@@ -46,8 +47,9 @@ const UserSkills = ({ user_id, admin }) => {
         <div className="flex flex-row justify-end space-x-6 px-8">
           <form
             className="flex items-center"
-            onSubmit={() => {
+            onSubmit={(e) => {
               //newSkill not ""
+              e.preventDefault();
               if (newSkill) {
                 createRating({
                   variables: {
@@ -92,20 +94,13 @@ const UserSkills = ({ user_id, admin }) => {
                 </select>
               )}
               <div className="pl-4">
-                <input
-                  type="submit"
-                  value="Add Skill"
-                  className="rounded-md border-2 border-white p-1 text-white shadow-sm"
-                />
+                <input type="submit" value="Add Skill" className="btn-header" />
               </div>
             </div>
           </form>
           {admin && (
             <div className="self-center">
-              <Link
-                className="rounded-md border-2 border-white p-1 text-white shadow-sm"
-                to="/admin"
-              >
+              <Link className="btn-header" to="/admin">
                 Skill Listing
               </Link>
             </div>
@@ -116,16 +111,10 @@ const UserSkills = ({ user_id, admin }) => {
         <table className="w-full table-auto border-collapse border border-black">
           <tbody>
             <tr>
-              <th className="border-collapse border border-black p-2 text-center">
-                Name
-              </th>
-              <th className="border-collapse border border-black p-2 text-center">
-                Description
-              </th>
-              <th className="border-collapse border border-black p-2 text-center">
-                Rating
-              </th>
-              <th className="border-collapse border border-black p-2 text-center"></th>
+              <TableHeader name="Name" />
+              <TableHeader name="Description" />
+              <TableHeader name="Rating" />
+              <TableHeader />
             </tr>
             {!data.users[0].knownSkills.length ? (
               <UserSkillRow />

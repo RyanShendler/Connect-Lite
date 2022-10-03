@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components{
+    .btn-red{
+        @apply rounded-md bg-red-600 p-1 text-white shadow-sm
+    }
+    .btn-green{
+        @apply rounded-md bg-green-700 p-1 text-white shadow-sm
+    }
+    .btn-header{
+        @apply rounded-md border-2 border-white p-1 text-white shadow-sm
+    }
+}
