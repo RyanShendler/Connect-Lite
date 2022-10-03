@@ -39,8 +39,6 @@ const UserSkills = ({ user_id, admin }) => {
     return <div>An Error has Ocurred: {error.message}</div>;
   }
 
-  console.log(data);
-
   return (
     <div className="flex flex-col mt-4 bg-gray-50 rounded-md shadow-lg overflow-hidden">
       <div className="flex flex-row justify-between py-2 bg-sky-600">

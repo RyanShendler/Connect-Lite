@@ -29,7 +29,7 @@ const SkillListingRow = ({ name = "", description = "", edit = false, ID }) => {
         </td>
         <td className="border border-black border-collapse p-2 text-center">
           {edit && (
-            <div className="flex flex-col items-center justify-between">
+            <div className="flex flex-col items-center justify-around space-y-2">
               <button
                 onClick={() => setEditing(true)}
                 className="text-white bg-green-700 rounded-md shadow-sm p-1"
@@ -76,7 +76,7 @@ const SkillListingRow = ({ name = "", description = "", edit = false, ID }) => {
         </td>
         <td className="border border-black border-collapse p-2 text-center">
           {edit && (
-            <div className="flex flex-col items-center justify-between">
+            <div className="flex flex-col items-center justify-around space-y-2">
               <button
                 onClick={() => {
                   updateSkill({

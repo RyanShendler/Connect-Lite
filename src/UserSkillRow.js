@@ -61,9 +61,10 @@ const UserSkillRow = ({
       <td className="border border-black border-collapse p-2 text-center">
         {!empty && (
           <div className="flex flex-row justify-around">
-            <label>
-              Knowledgeable
+            <div className="flex flex-row items-center content-center space-x-1">
+              <label htmlFor={`knowledgeable-${ID}`}>Knowledgeable</label>
               <input
+                id={`knowledgeable-${ID}`}
                 type="radio"
                 name={`rating${ID}`}
                 checked={userRating === "1"}
@@ -71,10 +72,11 @@ const UserSkillRow = ({
                   updateRating("1");
                 }}
               />
-            </label>
-            <label>
-              Proficient
+            </div>
+            <div className="flex flex-row items-center content-center space-x-1">
+              <label htmlFor={`proficient-${ID}`}>Proficient</label>
               <input
+                id={`proficient-${ID}`}
                 type="radio"
                 name={`rating${ID}`}
                 checked={userRating === "2"}
@@ -82,10 +84,11 @@ const UserSkillRow = ({
                   updateRating("2");
                 }}
               />
-            </label>
-            <label>
-              Lead/Teach
+            </div>
+            <div className="flex flex-row items-center content-center space-x-1">
+              <label htmlFor={`lead/teach-${ID}`}>Lead/Teach</label>
               <input
+                id={`lead/teach-${ID}`}
                 type="radio"
                 name={`rating${ID}`}
                 checked={userRating === "3"}
@@ -93,7 +96,7 @@ const UserSkillRow = ({
                   updateRating("3");
                 }}
               />
-            </label>
+            </div>
           </div>
         )}
       </td>
