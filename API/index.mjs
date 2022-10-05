@@ -13,6 +13,7 @@ const typeDefs = gql`
 
   type Skill {
     skillID: ID! @id
+    lastModified: DateTime! @timestamp
     name: String!
     description: String!
     skillUsers: [User!]!

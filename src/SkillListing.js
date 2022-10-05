@@ -1,13 +1,24 @@
 import SkillListingRow from "./SkillListingRow";
-import { gql, useMutation, useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { GET_LISTING } from "../queries/GET_LISTING";
 import { useState } from "react";
 import Modal from "./Modal";
 import { CREATE_SKILL } from "../mutations/CREATE_SKILL";
 import TableHeader from "./TableHeader";
+import TextInput from "./TextInput";
 
 const SkillListing = () => {
-  const { loading, error, data } = useQuery(GET_LISTING);
+  const { loading, error, data } = useQuery(GET_LISTING, {
+    variables: {
+      options: {
+        sort: [
+          {
+            lastModified: "DESC",
+          },
+        ],
+      },
+    },
+  });
   const [showModal, setShowModal] = useState(false);
   const [skillName, setSkillName] = useState("");
   const [skillDescription, setSkillDescription] = useState("");
@@ -97,25 +108,19 @@ const SkillListing = () => {
                 <label htmlFor="name" className="py-1">
                   Name
                   <br />
-                  <input
-                    id="name"
-                    type="text"
-                    placeholder="Name"
+                  <TextInput
+                    ID={"name"}
                     value={skillName}
                     onChange={(e) => setSkillName(e.target.value)}
-                    className="px-1 shadow-md"
                   />
                 </label>
                 <label htmlFor="description" className="pt-1 pb-2">
                   Description
                   <br />
-                  <input
-                    id="description"
-                    type="text"
-                    placeholder="Description"
+                  <TextInput
+                    ID={"description"}
                     value={skillDescription}
                     onChange={(e) => setSkillDescription(e.target.value)}
-                    className="px-1 shadow-md"
                   />
                 </label>
               </form>

@@ -3,6 +3,7 @@ import { useMutation } from "@apollo/client";
 import { UPDATE_SKILL } from "../mutations/UPDATE_SKILL";
 import { DELETE_SKILL } from "../mutations/DELETE_SKILL";
 import TableEntry from "./TableEntry";
+import TextInput from "./TextInput";
 
 //edit is true if edit button should be rendered, editing is true when we are currently editing content
 const SkillListingRow = ({ name = "", description = "", edit = false, ID }) => {
@@ -52,19 +53,17 @@ const SkillListingRow = ({ name = "", description = "", edit = false, ID }) => {
     return (
       <tr>
         <TableEntry>
-          <input
-            id="editName"
+          <TextInput
+            ID={"editName"}
             value={skillName}
             onChange={(e) => setSkillName(e.target.value)}
-            className="px-1 shadow-md"
           />
         </TableEntry>
         <TableEntry>
-          <input
-            id="editDescription"
+          <TextInput
+            ID={"editDescription"}
             value={skillDescription}
             onChange={(e) => setSkillDescription(e.target.value)}
-            className="px-1 shadow-md"
           />
         </TableEntry>
         <TableEntry>

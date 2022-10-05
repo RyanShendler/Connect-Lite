@@ -27,6 +27,7 @@ module.exports = {
       directory: path.resolve(__dirname, "dist"), //dev servers uses ./dist as output dir
     },
     hot: true, //enable hot reloading
+    historyApiFallback: true,
   },
   module: {
     rules: [
